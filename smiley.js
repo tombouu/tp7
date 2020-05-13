@@ -36,20 +36,29 @@ function ecrit(ctx) {
     ctx.fillText("Hello canvas!",45,200);
 }
 
-function Text() {
+function displayDateTime() {
     const event = new Date();
 
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-document.getElementById("jour").innerHTML = event.toLocaleDateString('ar-EG', options);
+document.getElementById("jour").innerHTML = event.toLocaleDateString('fr-FR', options);
+document.getElementById("heure").innerHTML = event.toLocaleTimeString('fr-FR');
+}
+
+function displayDecrementSeconds() {
+    let temps = 5000;
+    document.getElementById("temp").innerHTML = temps/1000 - (setTimeout(dessin,temps)-1) ;
+    if (value < 0 ) {
+        document.getElementById("temp").innerHTML = "Le text est affichée";
+    }
+    
 }
 
 
 function main() {
-    Texte();
-
-    dessin();
-    
+    setInterval(displayDateTime,1000);
+    setInterval(displayDecrementSeconds,1000);
+    setInterval(clearInterval(dessin),1000);
 }
 
 main();
